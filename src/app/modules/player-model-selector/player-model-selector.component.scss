@@ -1,0 +1,147 @@
+@mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  width: $size;
+  height: $size;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: calc(($size - $thickness) / 2);
+    left: 0;
+    right: 0;
+    height: $thickness;
+    background: $color;
+    border-radius: $thickness;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+@mixin user() {
+  display: block;
+  transform: scale(var(--ggs, 1));
+  box-sizing: border-box;
+  width: 12px;
+  height: 18px;
+
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    border: 2px solid
+  }
+
+  &:before {
+    width: 8px;
+    height: 8px;
+    border-radius: 30px;
+    top: 0;
+    left: 2px
+  }
+
+  &:after {
+    width: 12px;
+    height: 9px;
+    border-bottom: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    top: 9px
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 1em;
+  height: 100%;
+
+  .top-info {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2em;
+    padding: 0.75em;
+
+    .main-panel-actions {
+      display: flex;
+      flex-direction: row;
+      column-gap: 1em;
+      margin-left: auto;
+    }
+  }
+
+  .tab-panel {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    flex-grow: 1;
+
+    .tab-selector {
+      display: flex;
+      flex-direction: row;
+
+      & > * {
+        width: 64px;
+        height: 32px;
+        justify-content: center;
+        cursor: pointer;
+        border: 1px solid #111111;
+        border-bottom: 0;
+        border-right: 0;
+      }
+
+      & > :nth-last-child(1) {
+        border-right: 1px solid #111111;
+      }
+
+      .select-player-model {
+
+      }
+
+      .select-npc {
+
+      }
+
+      .config {
+
+      }
+    }
+
+    .tab-content {
+      display: flex;
+      width: 100%;
+      border: 1px solid black;
+      flex-grow: 1;
+    }
+  }
+}
+
+i.close-button {
+  @include cross(16px, red, 2px);
+
+  cursor: pointer;
+}
+
+i.user-icon {
+  @include user();
+}
